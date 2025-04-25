@@ -7,6 +7,10 @@ import {
   sortDoctors,
 } from "./utils/filterUtils";
 import { FilterState } from "./types";
+import SortOptions from "./components/SortOptions";
+import FilterPanel from "./components/FilterPanel";
+import DoctorCard from "./components/DoctorCard";
+import "./styles/styles.css";
 
 function App() {
   const { doctors, loading, error } = useDoctorData();
@@ -55,20 +59,51 @@ function App() {
   const sortedDoctors = filterState.sortBy
     ? sortDoctors(filteredDoctors, filterState.sortBy)
     : filteredDoctors;
+
   if (loading) {
     return <div>Loading...</div>;
   }
+
   if (error) {
     return <div>{error}</div>;
   }
+
   return (
-    <>
-      {sortedDoctors.map((doctor) => (
-        <div key={doctor.id}>
-          <h2>{doctor.name}</h2>
+    <div className="app">
+      <div className="main-content">
+        <div className="sidebar">
+          <SortOptions
+            sortBy={filterState.sortBy}
+            onSortChange={(option) => updateFilter("sortBy", option)}
+          />
+
+          <FilterPanel
+            doctors={doctors}
+            filterState={filterState}
+            updateFilter={updateFilter}
+            clearFilters={clearFilters}
+          />
         </div>
-      ))}
-    </>
+
+        <div className="doctor-list">
+          {loading && <div className="loading">Loading doctors...</div>}
+
+          {error && <div className="error">Error loading doctors: {error}</div>}
+
+          {!loading && !error && sortedDoctors.length === 0 && (
+            <div className="no-results">
+              No doctors found matching your criteria
+            </div>
+          )}
+
+          {!loading &&
+            !error &&
+            sortedDoctors.map((doctor) => (
+              <DoctorCard key={doctor.id} doctor={doctor} />
+            ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
