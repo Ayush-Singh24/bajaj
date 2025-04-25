@@ -1,21 +1,18 @@
 import { useState } from "react";
-import { Doctor, FilterState } from "../types";
-import { getUniqueSpecialities } from "../utils/filterUtils";
+import { FilterState } from "../types";
+import { allSpecialities } from "../utils/filterUtils";
 
 interface FilterPanelProps {
-  doctors: Doctor[];
   filterState: FilterState;
   updateFilter: (key: keyof FilterState, value: any) => void;
   clearFilters: () => void;
 }
 
 const FilterPanel = ({
-  doctors,
   filterState,
   updateFilter,
   clearFilters,
 }: FilterPanelProps) => {
-  const allSpecialities = getUniqueSpecialities(doctors);
   const [specialitySearch, setSpecialitySearch] = useState("");
   const [showSpecialities, setShowSpecialities] = useState(true);
   const [showConsultation, setShowConsultation] = useState(true);
@@ -52,7 +49,7 @@ const FilterPanel = ({
           className="filter-header"
           onClick={() => setShowConsultation(!showConsultation)}
         >
-          <h3>Mode of consultation</h3>
+          <h3 data-testid="filter-header-moc">Mode of consultation</h3>
           <span className="dropdown-icon">{showConsultation ? "▼" : "▶"}</span>
         </div>
         {showConsultation && (
@@ -63,6 +60,7 @@ const FilterPanel = ({
                 name="consultation"
                 checked={filterState.consultationType === "Video Consult"}
                 onChange={() => handleConsultationChange("Video Consult")}
+                data-testid="filter-video-consult"
               />
               Video Consultation
             </label>
@@ -72,6 +70,7 @@ const FilterPanel = ({
                 name="consultation"
                 checked={filterState.consultationType === "In-clinic"}
                 onChange={() => handleConsultationChange("In-clinic")}
+                data-testid="filter-in-clinic"
               />
               In-clinic Consultation
             </label>
@@ -93,7 +92,7 @@ const FilterPanel = ({
           className="filter-header"
           onClick={() => setShowSpecialities(!showSpecialities)}
         >
-          <h3>Specialities</h3>
+          <h3 data-testid="filter-header-speciality">Specialities</h3>
           <span className="dropdown-icon">{showSpecialities ? "▼" : "▶"}</span>
         </div>
         {showSpecialities && (
@@ -114,6 +113,7 @@ const FilterPanel = ({
                     type="checkbox"
                     checked={filterState.specialities.includes(speciality)}
                     onChange={() => handleSpecialityChange(speciality)}
+                    data-testid={`filter-speciality-${speciality}`}
                   />
                   {speciality}
                 </label>

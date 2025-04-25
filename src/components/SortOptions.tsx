@@ -12,10 +12,10 @@ const SortOptions = ({ sortBy, onSortChange }: SortOptionsProps) => {
   return (
     <div className="sort-options">
       <div
-        className="sort-header"
+        className="sort-header filter-header-sort"
         onClick={() => setShowSortOptions(!showSortOptions)}
       >
-        <h3>Sort by</h3>
+        <h3 data-testid="filter-header-sort">Sort by</h3>
         <span className="dropdown-icon">{showSortOptions ? "▼" : "▶"}</span>
       </div>
       {showSortOptions && (
@@ -24,6 +24,7 @@ const SortOptions = ({ sortBy, onSortChange }: SortOptionsProps) => {
             <input
               type="radio"
               name="sort"
+              data-testid="sort-fees"
               checked={sortBy === "Price: Low-High"}
               onChange={() => onSortChange("Price: Low-High")}
             />
@@ -33,6 +34,7 @@ const SortOptions = ({ sortBy, onSortChange }: SortOptionsProps) => {
             <input
               type="radio"
               name="sort"
+              data-testid="sort-experience"
               checked={sortBy === "Experience: Most Experience first"}
               onChange={() => onSortChange("Experience: Most Experience first")}
             />

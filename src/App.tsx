@@ -84,7 +84,6 @@ function App() {
           />
 
           <FilterPanel
-            doctors={doctors}
             filterState={filterState}
             updateFilter={updateFilter}
             clearFilters={clearFilters}

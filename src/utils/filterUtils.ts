@@ -59,15 +59,32 @@ export const sortDoctors = (doctors: Doctor[], sortBy: string): Doctor[] => {
   }
 };
 
-export const getUniqueSpecialities = (doctors: Doctor[]): string[] => {
-  const specialitiesSet = new Set<string>();
-
-  doctors.forEach((doctor) => {
-    doctor.specialities.forEach((spec) => specialitiesSet.add(spec.name));
-  });
-
-  return Array.from(specialitiesSet);
-};
+export const allSpecialities = [
+  "General Physician",
+  "Dentist",
+  "Dermatologist",
+  "Paediatrician",
+  "Gynaecologist",
+  "ENT",
+  "Diabetologist",
+  "Cardiologist",
+  "Physiotherapist",
+  "Endocrinologist",
+  "Orthopaedic",
+  "Ophthalmologist",
+  "Gastroenterologist",
+  "Pulmonologist",
+  "Psychiatrist",
+  "Urologist",
+  "Dietitian/Nutritionist",
+  "Psychologist",
+  "Sexologist",
+  "Nephrologist",
+  "Neurologist",
+  "Oncologist",
+  "Ayurveda",
+  "Homeopath",
+];
 
 export const getUrlParams = (filterState: FilterState): string => {
   const params = new URLSearchParams();

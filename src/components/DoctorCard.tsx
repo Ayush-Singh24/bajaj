@@ -10,20 +10,24 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
   // const feeAmount = doctor.fees.replace(/[^\d]/g, "");
 
   return (
-    <div className="doctor-card">
+    <div data-testid="doctor-card" className="doctor-card">
       <div className="doctor-info">
         <div className="doctor-image">
           <img src={doctor.photo} alt={doctor.name} />
         </div>
         <div className="doctor-details">
-          <h2 className="doctor-name">{doctor.name}</h2>
-          <div className="doctor-speciality">
+          <h2 data-testid="doctor-name" className="doctor-name">
+            {doctor.name}
+          </h2>
+          <div data-testid="doctor-speciality" className="doctor-speciality">
             {doctor.specialities.map((spec) => spec.name).join(", ")}
           </div>
           <div className="doctor-qualifications">
             {doctor.doctor_introduction}
           </div>
-          <div className="doctor-experience">{experienceYears} yrs exp.</div>
+          <div data-testid="doctor-experience" className="doctor-experience">
+            {experienceYears} yrs exp.
+          </div>
           <div className="doctor-languages">
             <span className="label">Languages:</span>{" "}
             {doctor.languages.join(", ")}
@@ -45,7 +49,9 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
         </div>
       </div>
       <div className="doctor-action">
-        <div className="doctor-fee">{doctor.fees}</div>
+        <div data-testid="doctor-fee" className="doctor-fee">
+          {doctor.fees}
+        </div>
         <button className="book-appointment-btn">Book Appointment</button>
       </div>
     </div>
