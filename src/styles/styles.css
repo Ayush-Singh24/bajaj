@@ -309,6 +309,52 @@ body {
   color: #e53e3e;
 }
 
+input[type="text"],
+input[type="search"],
+.search-input,
+.speciality-search-input {
+  background-color: #fff !important;
+  color: #333;
+  appearance: auto;
+}
+
+input:where([type="checkbox"], [type="radio"]) {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  vertical-align: top;
+  margin: calc(0.75em - 11px) 0.25rem 0 0;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background: #fff no-repeat center center;
+}
+
+input[type="radio"] {
+  border-radius: 50%;
+}
+
+input:where([type="checkbox"], [type="radio"]):where(
+    :active:not(:disabled),
+    :focus
+  ) {
+  border-color: #2563a9;
+  outline: none;
+}
+
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+  border-color: #2563a9;
+}
+
+input[type="radio"]:checked {
+  background-image: url("../../public/radio.svg");
+}
+
+input[type="checkbox"]:checked {
+  background-image: url("../../public/checkbox.svg");
+}
+
 @media (max-width: 768px) {
   .main-content {
     flex-direction: column;
