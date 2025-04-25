@@ -11,6 +11,7 @@ import SortOptions from "./components/SortOptions";
 import FilterPanel from "./components/FilterPanel";
 import DoctorCard from "./components/DoctorCard";
 import "./styles/styles.css";
+import Header from "./components/Header";
 
 function App() {
   const { doctors, loading, error } = useDoctorData();
@@ -70,6 +71,11 @@ function App() {
 
   return (
     <div className="app">
+      <Header
+        doctors={doctors}
+        searchTerm={filterState.searchTerm}
+        setSearchTerm={(term) => updateFilter("searchTerm", term)}
+      />
       <div className="main-content">
         <div className="sidebar">
           <SortOptions

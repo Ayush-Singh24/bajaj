@@ -7,7 +7,7 @@ interface DoctorCardProps {
 const DoctorCard = ({ doctor }: DoctorCardProps) => {
   const experienceYears = doctor.experience.match(/\d+/)?.[0] || "";
 
-  const feeAmount = doctor.fees.replace(/[^\d]/g, "");
+  // const feeAmount = doctor.fees.replace(/[^\d]/g, "");
 
   return (
     <div className="doctor-card">
