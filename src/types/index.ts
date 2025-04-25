@@ -1,11 +1,30 @@
 export interface Doctor {
-  id: number;
+  id: string;
   name: string;
-  qualifications: string[];
+  name_initials: string;
+  photo: string;
+  doctor_introduction: string;
+  specialities: { name: string }[];
+  fees: string;
+  experience: string;
+  languages: string[];
+  clinic: {
+    name: string;
+    address: {
+      locality: string;
+      city: string;
+      address_line1: string;
+      location: string;
+      logo_url: string;
+    };
+  };
+  video_consult: boolean;
+  in_clinic: boolean;
+}
+
+export interface FilterState {
+  searchTerm: string;
+  consultationType: "Video Consult" | "In-clinic" | "All";
   specialities: string[];
-  experience: number;
-  fees: number;
-  clinic: string;
-  location: string;
-  image: string;
+  sortBy: "Price: Low-High" | "Experience: Most Experience first" | "";
 }
